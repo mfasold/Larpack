@@ -1,0 +1,169 @@
+.TH arrayCorrect 1 "January 26, 2007" "version 0.1" "USER COMMANDS"
+\"
+\" .TH arrayCorrect 1 "" "" ""
+.SH NAME
+arrayCorrect \- corrects microarray signal intensities
+.SH SYNOPSIS
+arrayCorrect [\-t tiling | genechip] \-c CELFILE \-d PROBESEQUENCE/(B)PMAP-FILE
+.SH DESCRIPTION
+Microarray signal intensities are affected by parasitic
+interferences. The arrayCorrect program corrects these intensities to
+obtain better measures for target RNA abundance. It currently supports
+Affymetrix (c) 3' expression (genechip) and tiling microarrays, which
+are treated differently. In genechip mode, arrayCorrect reads probe sequences
+and probeset definitions from a tabular format text-file. In tiling
+array mode, probe information is read from a PMAP/BPMAP file. arrayCorrect reads
+probe signal intensities from CEL\-files in either mode.
+.PP
+After computing the corrections, arrayCorrect leaves a number of result and
+diagnose files in the current working directory. There are multiple
+expression measures that estimate the target concentration in
+different ways. For each selected measure, arrayCorrect creates a
+tabular file
+that contains probe and probeset, respectively, expression
+measures. The remaining
+files contain diagnostic information such as sequence profiles and
+hookcurve plots. The script "makePS" turns these results into an
+integrated report pdf document.
+.SH OPTIONS
+.B General Options:
+.TP
+\-h [ \-\-help ]
+Prints help message.
+.TP
+\-\-config-file arg
+Import options from given config file.
+.TP
+\-t [ \-\-chip\-type ]
+Type of the microarray chip, either "genechip" or "tiling".
+.TP
+\-i [ \-\-intensity\-file ]
+Filename to contain the signal intensity information (CEL\-file)
+.TP
+\-c [ \-\-chip\-file ]
+Name of the file to contain chip specific information. That
+is either a tabular, PMAP or BPMAP file, depending on chip type.
+.TP
+\-a [ \-\-averaging\-method ]
+Method to robustly determine probeset average intensity,
+either "mean",  "median" or "tukey" (=One-step Tukey Biweight)
+.TP
+\-\-tukey\-tuning
+Tuning constant for the one-step Tukey Biweight Method
+.TP
+\-l [ \-\-gLog\-parameter ]
+gLog parameter c.
+.TP
+\-\-saturation\-computation arg (=0)            
+Method to compute the saturation term I_max. Fit either hookcurve (0)
+or use the average of n strongest probes (1)
+.TP
+\-\-probeset\-limit arg (=5000)
+Maximum number of probes used to compute the sequence profiles (0 =
+use all probes) (default: 5000 for expression arrays, 15000 for tiling
+arrays)
+.TP
+\-\-print\-probe\-statistics
+Writes statistics and expression measures similar to
+probesetStatistics.dat on probe-level. Requires for plenty of
+disk-space.
+.TP
+\-e [ \-\-expression\-measures ]
+What expression measures shall be calculated:
+    1000  : only PM
+    0100  : only MM
+    0010  : Diff (fast)
+    0001  : Diff (gcrma\-like)
+    0101  (guess what this does)
+.PP
+.B Detailed options:
+.TP
+\-\-background\-subtraction\-zones
+Background subtraction divides the chip in zones^2 areas.
+.TP
+\-\-background\-subtraction\-ratio
+Multiplicative factor applied to the background value
+to be subtracted from each intensity
+.TP
+\-\-shuffling\-optimal\-probes\-per\-set
+Number of probes that a probeset optimally contains
+.TP
+\-\-shuffling\-maximal\-probes\-per\-set
+Number of probes that a probeset maximally contains
+.TP
+\-\-shuffling\-max\-probe\-distance
+Maximum allowed distance between adjacent probes within a probeset
+.TP
+\-\-shuffling\-window\-size
+Size of moving average window during shuffling
+.TP
+\-\-shuffling\-specific\-threshold
+Probability above which a probe is considered target\-present
+.PP
+.B Hookcurve Options:
+.TP
+\-p [ \-\-detect\-ip ]
+Method to detect inflection point: 
+        0 = line and parabola
+        1 = two straight lines in convenient intervals
+        2 = first deviation
+        3 = maximum of second deviation
+.TP
+\-\-interval\-count
+Specifies the number of intervals for the FitTwoStraightLines
+algorithm to detect the inflection point. This should usually
+not be changed. In some cases it might be useful to change
+it to some higher value
+.TP
+\-w [ \-\-hookcurve\-window\-size ]
+For the hookcurve, the number of probesets to average over
+.TP
+\-r [ \-\-sequence\-profile\-rank ]
+Rank of the sequence profile model, i.e. mononucleotide (1),dinucleotide
+(2) or more
+.TP
+\-d [ \-\-digitize\-intervals ]
+Number of intervals the hookcurve is digitized to fit the functions to
+detect inflection point. 0 equals no digitization
+.TP
+\-\-set\-uncorrected\-kinkpoint arg (=0)    
+Set kink point of uncorrected hookcurve (0 to compute)
+.TP
+\-\-set\-corrected\-kinkpoint arg (=0)
+Set kink point of corrected hookcurve (0 to compute)
+.PP
+.B Debugging Options:
+.TP
+\-g [ \-\-debug\-mode ]   
+Print additional information and statistics. Slower.
+.TP
+\-\-probeset\-size\-filter arg (=0) 
+When set to >0, only probesets of that particular size are processed
+.TP
+\-y [ \-\-universal\-param ] arg    
+Parameter that might be used for different debug options
+.TP
+\-m [ \-\-maskfile ] arg           
+The argument defines a maskfile (ascii) that lists the probesets by
+their id that are not considered for calculation 
+.TP
+\-\-read\-profiles                 
+Read sequence profiles from files. All profile .dat files must reside
+in current working directory.
+.TP
+\-\-use\-gstacks\-correction
+Corrects for sequence effects specific to some affymetrix arrays
+(e.g. g-stacks).
+.SH EXAMPLES
+.TP
+Correct a expression array with default parameters:
+arrayCorrect \-i ~/celFiles/LatinSquareA1.CEL \-c ~/mapFiles/ProbeSequence.txt
+.PP
+.TP
+Correct tiling microarray using nearest-neighbor model for sequence effects and the fit-two-lines algorithm with 10 intervals for computation of the inflection point:
+arrayCorrect \-t tiling \-r 2 \-p 1 \--interval-count 10 \-i ~/celFiles/M-Chip_13.CEL \-c ~/mapFiles/Hs35b_M13R_v01_NCBIv35.bpmap
+.PP
+\" .SH REFERENCES
+\" blub
+.SH AUTHORS
+Mario Fasold, Jan Bruecker

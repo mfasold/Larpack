@@ -1,0 +1,81 @@
+html,body {
+font-family:Corbel,Segoe UI,Tahoma,Arial,Helvetica,sans-serif;
+margin:0px;
+padding:0px;
+border:none;
+width:100%;
+}
+
+a:link { color:#0008c0; text-decoration:underline; }
+a:visited { color:#0008c0; text-decoration:underline; }
+a:focus { color:#0008c0; text-decoration:underline; }
+a:hover { color:#ffffff; background-color:#0008c0; text-decoration:underline;}
+a:active { color:#0008c0; text-decoration:underline; }
+
+td#menu a:link { text-decoration:none; }
+td#menu a:visited { text-decoration:none; }
+td#menu a:focus { text-decoration:none; }
+td#menu a:hover { text-decoration:none;}
+td#menu a:active { text-decoration:none; }
+
+table#pagetable 
+{
+	margin:50px 0px 40px 50px; /* because the stupid IE is not capable to center boxes by auto-margins */
+	padding:0px;
+	width:762px;
+	border:none;
+}
+
+td#title
+{
+	background-color:#f4ce00;
+	padding:10px;		
+}
+	
+td#menu
+{
+	padding:10px;
+	background-color:#d0d0d0;
+}
+
+td#content
+{
+	padding:10px;
+	text-align:justify;
+}
+
+td#headline
+{
+	padding:10px;
+}
+
+p#date
+{
+	font-size:xx-small;
+	font-style:italic;
+	margin-bottom:0px;
+	padding-bottom:0px;
+}
+
+p#image
+{
+	text-align:justify;	
+	margin-bottom:0px;
+}
+
+p#entry
+{
+	margin-top:0px;
+}
+
+p#italic
+{
+	font-style:italic;
+	margin-top:0px;
+	padding-bottom:0px;
+}
+
+td 
+{
+	vertical-align:top;
+}

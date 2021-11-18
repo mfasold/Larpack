@@ -1,0 +1,25 @@
+Building instructions for Larpack for Visual Studio
+---------------------------------------------------
+
+A) Installing the tools
+
+* Install Visual C++ 2005 Express (or Studio) 
+  (free Express Version can be obtained from http://www.microsoft.com/express/2005/download/default.aspx)
+* Install Platform SDK into directory (VCInstall)\PlatformSDK
+* Install Boost libary binaries from http://www.boost-consulting.com/products/free
+  selecting all prebuilded libs (multi-threaded debug,...) for VC 8
+* Install GSL binaries from Gnuwin32 http://gnuwin32.sourceforge.net/packages/gsl.htm
+  untested alternative: * Install GSL source (http://www.gnu.org/software/gsl/) 
+* Build GSL with VC++ project file included in [gsl]/src/VC8 in Release Mode and copy the resulting 
+  files libgsl_dll.lib and libgslcblas_dll.lib into [Larpack]\win directory (any other directory VC 8
+  looks for the libraries)
+
+B) Configuring VC++
+
+* Configure the directories in Tools -> Options ->Projects and Solutions -> VC++ Directories. Add:
+  - BOOST directory to Include Files
+  - BOOST\lib directory to Library Files
+  - GSL include to Include Files
+  - GSL library to Library Files
+  - (If you installed Platform SDK to another directory, you'll have to add it's include and lib as well)
+* Build included Larpack VC++ solution

@@ -1,0 +1,9 @@
+Package: larpack
+Version: 0.1-1
+Title: R wrapper for Leipzig Array Package
+Author: Mario Fasold, Jan Bruecker, Hans Binder, Jorg Hackermuller
+Maintainer: Jorg Hackermuller 
+Depends: Biobase
+Description: Provide methods for the model based analysis of microarray data. Larpack explicitly models probe transcript interaction thernodynamics and saturation effects to achieve regularized concentration measures from Affymetrix array raw data.
+License: GPL (version 2 or later)
+

@@ -1,0 +1,273 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+		<title>Larpack Result Sheet</title>
+		<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<META name="description" content="Larpack Result Sheet">
+		<link href="styles.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<a name="Start"></a>
+		<table id="pagetable">
+			<tr>
+				<td id="title" colspan="2">
+					<h1>HOOK analysis</h1>
+					<p>
+					<b>of the chip:</b> <a href=".">chipId<br>
+					<a href="http://www.izbi.uni-leipzig.de/izbi/mitarbeiter/binder.php">Hans Binder</a>, Mario Fasold,
+					Jan Br&uuml;cker, Stephan Preibisch
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td id="menu">
+					<!--<p><a href="#Chip Surface">Chip Surface</a></p>-->
+					<p><a href="#Chip characteristics">Chip characteristics</a></p>
+					<p><a href="#Hook Curves">Hook Curves</a></p>
+					<p><a href="#Sensitvity Profiles">Sensitvity Profiles</a></p>
+					<p><a href="#Parameter settings">Parameter settings</a></p>
+					<p><b><a href="HookReport.pdf">PDF</a></b></p>
+				</td>
+				<td id="content">
+					<!--<a name="Chip Surface"></a>
+					<h2>Chip Surface</h2>
+					<p id="entry">
+						This image contains a visualization of the chip surface, generated from the PM-
+						and MM-Intensities and their respective positions on a chip. Black areas
+						without any probes are normal, they contain data which is not listet in the
+						CEL/CDF files.<br>
+					</p>
+					<p id="image">
+						<a href="surfaceplot.png"><img src="thumbs/surfaceplot_300x300.png" width="300" height="300" border=0></a>
+					</p>
+					<p id="italic">
+						Click the image for a larger version, the scaled version does not contain all information!
+					</p>
+					<p><a href="#Start">Go back...</a></p>
+					-->
+
+<!------CHIP----------------------------------------------------------------------------------------------------------->
+					<h2>Chip</h2>
+					<p id="entry">
+					Chip-type: chip-file <br>
+					Date of analysis: startingTime
+					</p>
+<!------CHIP CHARACTERISTICS------------------------------------------------------------------------------------------->
+					<a name="Chip characteristics"></a>
+					<h2>Chip characteristics</h2>
+					<p id="entry">
+						The chip statistics characterize the performed hybridization in terms of chip-related parameters.
+
+					</p>
+
+				  <p id="entry">
+						<b>Optical background</b><br>
+						Average intensity of the Optical Background = backgroundSubtractionBgMean
+					</p>
+
+					<p id="entry">
+						<b>Hookcurve</b><br>
+	          Breakpoint (hookplot uncorrected) =	(Hookplot-Primary-intersectionPointXvalue ,	Hookplot-Primary-intersectionPointYvalue) <br>
+	          Breakpoint (hookplot corrected)= (Hookplot-Corrected-intersectionPointXvalue , Hookplot-Corrected-intersectionPointYvalue)\\
+	          Measured height of the hook (uncorrected) =  hookcurveHeightUncorrected  <br>
+	          Measured height of the hook (corrected) =  hookcurveHeightCorrected  <br>
+	          Measured width of the hook (uncorrected) = hookcurveWidthUncorrected <br>
+	          Measured width of the hook (corrected) = hookcurveWidthCorrected  <br>
+					</p>
+
+					<p id="entry">
+						<b>Non-specific range</b><br>
+						Fraction of non-specific probe sets (uncorrected) = probeNsFractionUncorrected <br>
+						Fraction of non-specific probe sets (corrected) = probeNsFractionCorrected <br>
+						<!--NS ratio Probeset level = probesetNsFraction <br> -->
+						Average non-specific background for PM <!--(log)--> = nsMeanProbesPmCorrected<br>
+						Average non-specific background for MM <!--(log)--> = nsMeanProbesMmCorrected<br>
+						Width of non-specific Range (uncorrected) = hookcurveNsRangeWidthUncorrected<br>
+						Width of non-specific Range (corrected) = hookcurveNsRangeWidthCorrected<br>
+						Standard deviation of non-specific background for PM <!--(log)--> = nsStdProbesPmCorrected<br>
+						Standard deviation of non-specific background for MM <!--(log)--> = nsStdProbesMmCorrected<br>
+					</p>
+
+					<p id="entry">
+						<b>Specific range (hook fit)</b><br>
+						Saturation intensity I<sub>max</sub> (log) = saturationImax<br>
+						PM/MM-gain (log(n)) = nsMeanProbessetsDiffCorrected(logB)<br> <!--logPM-logMM difference-->
+						Calculated height of the hook (only if chip saturates) = saturationA<br>
+						Calculated width of the hook (specific part) (only if chip saturates) = saturationF<br> 
+						Mean expression R|R>0.5 = rGreaterThan05Mean <br>
+						Mean expression log(R+1)|R>0.5 = rGreaterThan05LogPlus1Mean <br>
+					</p>
+
+					<p id="entry">
+						<b>Degradation</b><br>
+            Improved 3',5' ratio = DegradationBiasAverageSpecfific <br>
+            Tongs-Measure = DegradationBiasMario <br>
+					</p>
+
+
+					<p id="entry">
+											<b>Additional Information</b><br>
+											ArrayType: chip-file <br>
+											<!-- ArrayVersion = array_version -->
+											ExperimentCode: intensity-file
+					</p>
+
+					<p id="entry">
+						<b>Statistics of the NS-range</b><br>
+						<table border="1" width="450">
+						<tr>
+							<td>&nbsp;</td>
+							<td>PM<sub>uncorr</sub></td>
+							<td>MM<sub>uncorr</sub></td>
+							<td>PM<sub>corr</sub></td>
+							<td>MM<sub>corr</sub></td>
+						</tr>
+						<tr>
+							<td>&mu; Probes</td>
+							<td>nsMeanProbesPmUncorrected</td>
+							<td>nsMeanProbesMmUncorrected</td>
+							<td>nsMeanProbesPmCorrected</td>
+							<td>nsMeanProbesMmCorrected</td>
+						</tr>
+						<tr>
+							<td>&mu; Probesets</td>
+							<td>nsMeanProbessetsPmUncorrected</td>
+							<td>nsMeanProbessetsMmUncorrected</td>
+							<td>nsMeanProbessetsPmCorrected</td>
+							<td>nsMeanProbessetsMmCorrected</td>
+						</tr>
+						<tr>
+							<td>&sigma; Probes</td>
+							<td>nsStdProbesPmUncorrected</td>
+							<td>nsStdProbesMmUncorrected</td>
+							<td>nsStdProbesPmCorrected</td>
+							<td>nsStdProbesMmCorrected</td>
+						</tr>
+						<tr>
+							<td>&sigma; Probesets</td>
+							<td>nsStdProbessetsPmUncorrected</td>
+							<td>nsStdProbessetsMmUncorrected</td>
+							<td>nsStdProbessetsPmCorrected</td>
+							<td>nsStdProbessetsMmCorrected</td>
+						</tr>
+						<tr>
+							<td>&rho; Probes</td>
+							<td colspan="2" align="center">nsCorrelationProbesUncorrected</td>
+							<td colspan="2" align="center">nsCorrelationProbesCorrected</td>
+						</tr>
+						<tr>
+							<td>&rho; Probesets</td>
+							<td colspan="2" align="center">nsCorrelationProbesetsUncorrected</td>
+							<td colspan="2" align="center">nsCorrelationProbesetsCorrected</td>
+						</tr>
+
+						</table>
+					</p>
+
+					<p><a href="#Start">Go back...</a></p>
+
+<!------HOOK CURVES---------------------------------------------------------------------------------------------------->
+					<a name="Hook Curves"></a>
+					<h2>Hook Curves</h2>
+					<p id="entry">
+						The <i>Hook Curve</i> gives a general and intuitve overview of "how your
+						experiment performed". For more details see: <a href="http://www.izbi.uni-leipzig.de/izbi/Working%20Paper/2007/WP_16.pdf">paper</a>.<br>
+						Below you will find two versions of the so-called Hook Curves, first the Hook Curve created from uncorrected intensities and second
+						that from corrected data. The <a href="#Chip characteristics"> Statistics-Section</a> provides the respective chip-characteristics.<br>
+					</p>
+					<p id="image">
+						<img src="Hookplot-Primary.png" width="800" height="600" border=0> <br> <!--HookCurve-->
+						<br><br>
+						<img src="Hookplot-Corrected.png" border=0><!-- HookCurve NS-corrected-->
+					</p>
+					<!--
+					<p id="image">
+						<img src="" border=0>
+						<img src="thumbs/hookcurveFinal_315x236.jpg" border=0>
+					</p>-->
+
+					<p><a href="#Start">Go back...</a></p>
+
+					<a name="Sensitvity Profiles"></a>
+					<h2>Sensitvity Profiles</h2>
+					<p id="entry">
+						The Sensitvity Profiles reflect the relative binding strength of each base at each position in the probe sequence.
+						This behaviour is different for PM and MM sequences as well as for specific and non-specific hybridization.<br>
+						<b>Note:</b> Here we show the single-base related Sensitivity Profiles.
+					</p>
+					<p id="image">
+						<img src="SensitivityProfileNsPm-Corrected-single.png" border=0 > <!--PM-NS-Profile-->
+						<br><br>
+						<img src="SensitivityProfileNsMm-Corrected-single.png" border=0> <!--MM-NS-Profile-->
+					</p>
+					<p id="italic">
+						Sensitvity Profiles for <b>non-specific hybrdization</b> for PM probes (first) and MM probes (second).
+
+					</p>
+					<p id="image">
+						<img src="SensitivityProfileSPm-single.png" border=0> <!--PM-S-Profile-->
+						<br><br>
+						<img src="SensitivityProfileSMm-single.png" border=0> <!--MM-S-Profile-->
+					</p>
+					<p id="italic">
+						Sensitvity Profiles for <b>specific hybrdization</b> for PM probes (first) and MM probes (second).
+
+					</p>
+					<p><a href="#Start">Go back...</a></p>
+
+					<h2>Degradation Plot</h2>
+					<p id="entry">
+            The tongs-plot displays the degradation effect subject to probeset average intensities.
+					</p>
+					<p id="image">
+						<img src="PolymeraseBias.png" border=0 > <!--PM-NS-Profile-->
+					</p>
+
+
+<!------PARAMETER SETTINGS------------------------------------------------------------------------------------------------->
+					<a name="Parameter settings"></a>
+					<h2>Parameter settings</h2>
+					<p id="entry">
+					Analyzed chip: intensity-file <br>
+					Chip-type: chip-file <br>
+					Configuration file: config-file <br>
+					Date of analysis: startingTime <br>
+					Method for averaging: averaging-method <br>
+					 Method to robustly determine probeset average intensity (mean, median or tukey)<br>
+					Background substraction divides the chip in x&sup2; areas: x = background-subtraction-zones<br>
+					Multiplicative factor applied to the background value to be substracted from each intensity:
+          &nbsp;&nbsp;background-subtraction-ratio <br>
+					Maximum number of probes used to compute the sequence profiles (0 = use all probes): probeset-limit <br>
+					Rank of the sequence profile model (1=mononucleotid, 2=dinucleotid): sequence-profile-rank <br>
+					Detect-ip: detect-ip <br>
+					&nbsp;&nbsp;Method to detect inflection point: 0=line and parabola; 1=two straight lines in convenient intervals;<br>
+					&nbsp;&nbsp;2=first deviation; 3=maximum of second deviation<br>
+					Digitize-intervals: digitize-intervals <br>
+					&nbsp;&nbsp;Number of intervals the hookcurve is digitized to fit the functions to detect inflection point.<br>
+					&nbsp;&nbsp;(0 equals no digitization)<br>
+					Expression-measures: expression-measures <br>
+					&nbsp;&nbsp;What expression measures shall be calculated (log and glog-scale)<br>
+					gLog-Parameter: gLog-parameter <br>
+					Interval-count: interval-count <br>
+					&nbsp;&nbsp;Specifies the number of intervals for the FitTwoStraightLines algorithm to detect the inflection point.<br>
+					Maskfile: maskfile <br>
+					Filter of probeset-size: probeset-size-filter <br>
+					Saturation-computation: saturation-computation <br>
+					Set kink point of uncorrected hookcurve (0 to compute): set-uncorrected-kinkpoint <br>
+					Set kink point of corrected hookcurve (0 to compute): set-corrected-kinkpoint <br>
+					&nbsp;&nbsp;You can adjust the kink point if the calculated does not fit.<br>
+					(tiling only) <br>
+					Probability above which a probe is considered target-present: shuffling-specific-treshold <br>
+					Number of probes that a probeset optimally contains: shuffling-optimal-probes-per-set <br>
+					Number of probes that a probeset maximally contains: shuffling-maximal-probes-per-set <br>
+					Maximum allowed distance between adjacent probes within a probeset: shuffling-max-probe-distance <br>
+					Size of moving average window during shuffling: shuffling-window-size <br>
+
+          </p>
+					<p><a href="#Start">Go back...</a></p>
+
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

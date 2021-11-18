@@ -1,0 +1,33 @@
+Installation Instructions
+-------------------------
+
+1. Check if you have permissions for your R libraries directory. If
+   not, set up a local R library directory, e.g.:
+     mkdir ~/R_Libraries
+     export R_LIBS=~/R_Libraries
+
+2. Install the developer packages for R, boost and gsl. They are
+   required to compile Larpack and other R packages.
+
+   Depending on your Linux distibution, these packages may be named as
+   follows:
+    - R-devel, boost-devel, gsl-devel (Fedora)
+    - R-base-dev, libboost-dev, libgsl0-dev (Ubuntu)
+
+3. Compile and install Larpack R package: 
+     cd {Larpack-Root}/R
+     R CMD INSTALL Larpack
+
+   Note: If you already compiled the command-line version, existing
+   object-files may be linked and lead to odd errors. Make sure you
+   invoke "make clean" in the source/ directory in this case.
+
+4. In R run
+     library(affy)
+     mydata <- ReadAffy() # one or more celfiles should be present in current working directory
+     library(larpack)
+     # the so-called probe sequence file for your chip-type must be given as second parameter
+     # it can be downloaded at http://www.affymetrix.com/analysis/downloads/data/
+     results = runLarpack(mydata, "~/LibraryFiles/Mouse430_2_probe_tab", list("sequence-profile-rank"="2", "use-gstacks-correction"=""))
+     plot(results$CorrectedHookcurveSumLogI[,1], results$CorrectedHookcurveDeltaLogI[,1])  
+     ...

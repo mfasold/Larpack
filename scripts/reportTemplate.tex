@@ -1,0 +1,144 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[german,english]{babel}
+\usepackage{graphicx} 
+\usepackage{verbatim}
+\usepackage{booktabs}
+%\usepackage{listings} 
+\usepackage[latin1]{inputenc} 
+%\usepackage{psfrag} 
+%\usepackage{color}
+\begin{document} 
+\fontsize{8pt}{8pt} 
+\bfseries
+\sf
+%---------------------------------------------------------------------------------------------------------------
+{\huge {\bf HOOK Analysis}}\\ \\ \\
+%\begin{verbatim} intensity-file \end{verbatim}\par
+%\end{flushright}
+% Namen der Personen
+%---------------------------------------------------------------------------------------------------------------
+\section{Chip}
+\begin{tabular}{lr}
+	ID of the chip &\verb| chipId | \\
+	Date of analysis &\verb| startingTime| \\
+\end{tabular}\\	
+%---------------------------------------------------------------------------------------------------------------
+%--Chip characteristics----------------------------------------------------------------------------------------- 
+%--------------------------------------------------------------------------------------------------------------- 
+\section {Chip characteristics} 
+\begin{tabular}{lr}
+	{\bf Optical background} \\
+	Average intensity of the Optical Background &
+  backgroundSubtractionBgMean \\ \\
+	{\bf Hookcurve} \\
+	Breakpoint (hookplot uncorrected) & (Hookplot-Primary-intersectionPointXvalue , Hookplot-Primary-intersectionPointYvalue)\\
+	Breakpoint $(\Sigma_{0},\Delta_{0})$ (hookplot corrected) & (Hookplot-Corrected-intersectionPointXvalue , Hookplot-Corrected-intersectionPointYvalue)\\
+	Measured height of the hook (uncorrected) &\verb| hookcurveHeightUncorrected| \\
+	Measured height of the hook (corrected) &\verb| hookcurveHeightCorrected| \\
+	Measured width of the hook (uncorrected) &\verb| hookcurveWidthUncorrected| \\
+	Measured width of the hook (corrected) &\verb| hookcurveWidthCorrected| \\ \\
+
+	{\bf Non-specific range} \\
+    Fraction of non-specific probe sets (uncorrected) & probesetNsFractionUncorrected \\
+    Fraction of non-specific probe sets (corrected) & probesetNsFractionCorrected \\
+  	%NS ratio Probeset level & probesetNsFraction \\
+    %Average non-specific background for PM & nsMeanProbesPmCorrected \\
+	%Average non-specific background for MM & nsMeanProbesMmCorrected \\ 
+	Width of non-specific Range (uncorrected) & hookcurveNsRangeWidthUncorrected \\
+	Width of non-specific Range (corrected) & hookcurveNsRangeWidthCorrected \\ \\
+	%Standard deviation of non-specific background for PM & nsStdProbesPmCorrected \\
+	%Standard deviation of non-specific background for MM & nsStdProbesMmCorrected \\ \\
+	{\bf Specific range (hook fit)} \\
+  Saturation intensity Imax (log(M))&\verb| saturationImax| \\
+	PM/MM-gain (log(s))  &\verb| nsMeanProbessetsDiffCorrected(logB)| \\ %PM/MM ratio
+	Calculated height of the hook $\alpha$ (only if chip saturates) &\verb| saturationA| \\
+	Calculated width of the hook $\beta$ (only if chip saturates) &\verb| saturationF| \\ 
+    %Kink point & hookcurveKinkPoint \\
+	Mean expression R$|$R$>$0.5 &\verb| rGreaterThan05Mean| \\ 
+	Mean expression log(R+1)$|$R$>$0.5
+  &\verb| rGreaterThan05LogPlus1Mean| \\ \\
+
+	{\bf Degradation} \\
+  Improved 3',5' ratio $\frac{\langle \Sigma^{3'} \rangle_{sp(s)}}{\langle \Sigma^{5'} \rangle_{sp(s)}}$ 
+  &\verb| DegradationBiasAverageSpecfific| \\
+  Tongs-Measure &\verb| DegradationBiasMario| \\ \\    
+\end{tabular}\\
+\begin{tabbing}
+	{\bf Additional Information}\\
+	  Chip-type \= (sequence file) \\  \verb| chip-file| \\
+    Number of probes (probe count):  probeCount \\ \\
+    %ExperimentCode \\ \\
+\end{tabbing}
+{\bf Statistics of the NS-range} \\
+\begin{tabular}{|l||r|r|r|r|} %\begin{tabular}{l||r|r|r|r|r}
+
+    \hline \hline
+    \rule{0pt}{10pt}&$PM_{uncorr}$ & $MM_{uncorr}$ & $PM_{corr}$ & $MM_{corr}$ \\
+    \hline
+    \rule{0pt}{10pt}$\mu$ Probes & nsMeanProbesPmUncorrected & nsMeanProbesMmUncorrected & nsMeanProbesPmCorrected & nsMeanProbesMmCorrected \\
+    \hline
+    \rule{0pt}{10pt}$\mu$ Probesets & nsMeanProbessetsPmUncorrected & nsMeanProbessetsMmUncorrected 
+                    &  nsMeanProbessetsPmCorrected & nsMeanProbessetsMmCorrected \\
+    \hline
+    
+    \rule{0pt}{10pt}$\sigma$ Probes & nsStdProbesPmUncorrected & nsStdProbesMmUncorrected & nsStdProbesPmCorrected & nsStdProbesMmCorrected \\
+    \hline
+    \rule{0pt}{10pt}$\sigma$ Probesets & nsStdProbessetsPmUncorrected & nsStdProbessetsMmUncorrected 
+                       & nsStdProbessetsPmCorrected & nsStdProbessetsMmCorrected \\
+    \hline
+    \rule{0pt}{10pt}$\rho$ NS probes & \multicolumn{2}{|c|}{ nsCorrelationProbesUncorrected } & \multicolumn{2}{|c|}{nsCorrelationProbesCorrected} \\
+    \hline
+    \rule{0pt}{10pt}$\rho$ NS probesets & \multicolumn{2}{|c|}{ nsCorrelationProbesetsUncorrected } & \multicolumn{2}{|c|}{nsCorrelationProbesetsCorrected} \\
+    \hline
+\end{tabular}\\
+	$\mu$ mean
+	$\sigma$ standard deviation
+	$\rho$ correlation coefficient 
+%--------------------------------------------------------------------------------------------------------------- 
+%--Plots (Hook Curves and Sensitivity profiles)----------------------------------------------------------------- 
+%--------------------------------------------------------------------------------------------------------------- 
+\newpage
+\section {Plots}  
+
+\subsection*{Hook Curves}
+	The Hook Curves gives a general and intuitive overview of "how your expreiment performed".Below you will find two versions of the 
+	so-called Hook Curves, first the Hook Curve created from uncorrected intensities and second that from corrected data.\\
+	\includegraphics[scale=0.4]{Hookplot-Primary.png} \\
+	Intersection point: ( Hookplot-Primary-intersectionPointXvalue , Hookplot-Primary-intersectionPointYvalue ) (hookplot primary)\\ \\
+	\includegraphics[scale=0.4]{Hookplot-Corrected.png} \\ 
+	Intersection point: ( Hookplot-Corrected-intersectionPointXvalue , Hookplot-Corrected-intersectionPointYvalue ) (hookplot corrected)\\
+
+\newpage
+\subsection*{Sensitivity Profiles}
+	The Sensitivity Profiles reflect the relative binding strength of each base at each position in the probe sequence.
+	This behaviour is different for PM and MM sequences as well as for specific and non-specific hybridization.\\
+	{\bf Note:} Here we allways show the single-base related Sensitivity Profiles.\\ \\ \\
+	Non-specific hybridization for PM and MM probes \\
+  %  Variant ending with 0 for additive profile types
+  % \IfFileExists{SensitivityProfileNsPm-Corrected-single0.png}{\includegraphics[scale=0.25]{SensitivityProfileNsPm-Corrected-single0.png}}{} 
+  % \IfFileExists{SensitivityProfileNsMm-Corrected-single0.png}{\includegraphics[scale=0.25]{SensitivityProfileNsMm-Corrected-single0.png}}{}
+	\IfFileExists{SensitivityProfileNsPm-Corrected-single.png}{\includegraphics[scale=0.25]{SensitivityProfileNsPm-Corrected-single.png}}{} 
+	\IfFileExists{SensitivityProfileNsMm-Corrected-single.png}{\includegraphics[scale=0.25]{SensitivityProfileNsMm-Corrected-single.png}}{} \\ \\ \\
+	%\includegraphics[scale=0.4]{SensitivityProfileNsMm-Corrected-single.png} \\ \\
+%\newpage	
+	Specific hybridization for PM and MM probes \\
+	\IfFileExists{SensitivityProfileSPm-single.png}{\includegraphics[scale=0.25]{SensitivityProfileSPm-single.png}}{} 
+	\IfFileExists{SensitivityProfileSMm-single.png}{\includegraphics[scale=0.25]{SensitivityProfileSMm-single.png}}{}\\
+	%\includegraphics[scale=0.25]{SensitivityProfileSMm-single.png} \\
+
+\IfFileExists{PolymeraseBias.png}{
+  \subsection*{Degradation Plot}
+  The tongs-plot displays the degradation effect subject to probeset
+  average intensities. \\
+  \includegraphics[scale=0.35]{PolymeraseBias.png} \\
+}{}
+
+%---------------------------------------------------------------------------------------------------------------
+%--Parameter Settings------------------------------------------------------------------------------------------- 
+%--------------------------------------------------------------------------------------------------------------- 
+\newpage
+\section{Parameter settings}
+\begin{tabbing}
+\input{parameters}
+\end{tabbing}
+\end{document}

@@ -1,0 +1,64 @@
+all: $(SHLIB)
+
+MYCXXFLAGS=-O0 
+
+%.o: %.cpp
+	$(CXX) $(ALL_CPPFLAGS) $(ALL_CXXFLAGS) $(MYCXXFLAGS) -c $< -o $@
+
+PKG_CPPFLAGS=\
+	-I../../../source/Utility\
+	-I../../../source/AffymetrixSdk\
+	-I../../../source/AffymetrixSdk/file\
+	-I../../../source/AffymetrixSdk/portability\
+	-I../../../source/MicroarrayData\
+	-I../../../source/OligoMethod\
+	-I../../../source/OpticalBackgroundCorrection\
+	-I../../../source/Math\
+	-D_USE_MEM_MAPPING_
+
+SOURCES.larpack = \
+	../../../source/Utility/StringUtil.cpp\
+	../../../source/Utility/StlUtil.cpp\
+	../../../source/Utility/SequenceUtil.cpp\
+	../../../source/Utility/DataCollector.cpp\
+	../../../source/Math/MathUtil.cpp\
+	../../../source/OligoMethod/SubsetSensitivityProfile.cpp\
+	../../../source/OligoMethod/SensitivityProfile.cpp\
+	../../../source/OligoMethod/DetectKinkPoint.cpp\
+	../../../source/MicroarrayData/Chip.cpp\
+	../../../source/MicroarrayData/ProbesetComposition.cpp\
+	../../../source/MicroarrayData/MicroarrayExperiment.cpp\
+	../../../source/MicroarrayData/ProbeFilter.cpp\
+	../../../source/MicroarrayData/Probeset.cpp\
+	../../../source/MicroarrayData/PmMmProbe.cpp\
+	../../../source/MicroarrayData/SnpProbe.cpp\
+	../../../source/MicroarrayData/Probe.cpp\
+	../../../source/OligoMethod/HookModel.cpp\
+	../../../source/OligoMethod/HookcurveAnalyzer.cpp\
+	../../../source/OligoMethod/ExpressionMeasure.cpp\
+	../../../source/OligoMethod/OligoController.cpp\
+	../../../source/OligoMethod/HookcurveStatistics.cpp\
+	../../../source/OligoMethod/ProgramOptions.cpp\
+	../../../source/OpticalBackgroundCorrection/BackgroundSubtraction.cpp\
+	../../../source/AffymetrixSdk/file/BPMAPFileData.cpp\
+	../../../source/AffymetrixSdk/file/CDFFileData.cpp\
+	../../../source/AffymetrixSdk/file/CELFileData.cpp\
+	../../../source/AffymetrixSdk/file/CELFileWriter.cpp\
+	../../../source/AffymetrixSdk/file/FileWriter.cpp\
+	../../../source/AffymetrixSdk/file/FileIO.cpp\
+	../../../source/Utility/anyoption.cpp
+
+PKG_LIBS = \
+	-lgsl\
+	-lgslcblas\
+	-lm\
+
+SOURCES.package = \
+	larpack.cpp
+
+OBJECTS=$(SOURCES.larpack:.cpp=.o) $(SOURCES.package:.cpp=.o)
+
+all: myclean $(SHLIB)
+
+myclean:
+	rm -f $(OBJECTS)
